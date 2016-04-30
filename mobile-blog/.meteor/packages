@@ -23,7 +23,7 @@ iron:router
 accounts-password
 accounts-ui
 alethes:pages
-yogiben:admin
+#yogiben:admin
 twbs:bootstrap
 fortawesome:fontawesome
 aldeed:simple-schema
@@ -32,3 +32,5 @@ msavin:mongol
 lai:ddp-inspector
 underscore
 stevezhu:lodash
+#raix:push@2.6.13-rc.1
+raix:push
