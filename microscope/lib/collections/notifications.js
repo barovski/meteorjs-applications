@@ -9,6 +9,7 @@ Notifications.allow({
 
 createCommentNotification = function(comment) {
     var post = Posts.findOne(comment.postId);
+    // add notif if other users posts a comment
     if (comment.userId !== post.userId) {
         Notifications.insert({
             userId: post.userId,

@@ -23,6 +23,7 @@ Posts.deny({
     }
 });
 
+// check if post is not empty
 validatePost = function(post) {
     var errors = {};
 
