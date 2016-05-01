@@ -1,0 +1,522 @@
+# ==============================================================================
+# ----- Javascript -----
+# ==============================================================================
+'.source.js':
+  # -------------------------------------
+  # Functions
+  # -------------------------------------
+  # Function Decleration
+  'function declaration':
+    'prefix': 'declarationFunction'
+    'body': """
+        function($1){$2}
+    """
+  # Function without '
+  'function object':
+    'prefix': 'objectFunction'
+    'body': """
+      ${1:name}: function($2) {
+          $3
+      },
+    """
+  # Function with '
+  'function jquery':
+    'prefix': 'objectPanctuationFunction'
+    'body': """
+      '${1:name}': function($2) {
+          $3
+      },
+    """
+  # -------------------------------------
+  # Meteor Functions
+  # -------------------------------------
+  'Meteor Subscribe':
+    'prefix': 'meteorSubscribe'
+    'body': """
+        Meteor.subscribe('${1:name}'$2);$3
+    """
+  'Meteor Publish':
+    'prefix': 'meteorPublish'
+    'body': """
+        Meteor.publish('${1:name}', function($2) {
+            $3
+        });
+    """
+  'Meteor Call':
+    'prefix': 'meteorCall'
+    'body': """
+        Meteor.call('${1:name}'$2);$3
+    """
+  'Meteor Methods':
+    'prefix': 'meteorMethods'
+    'body': """
+        Meteor.methods({$1});
+    """
+  # -------------------------------------
+  # Template Helpers & Events
+  # -------------------------------------
+  # Template Events
+  'Template Events':
+    'prefix': 'TempEvents'
+    'body': """
+      Template.$1.events({
+          $2
+      });
+    """
+  # Function with '
+  'function (event, template)':
+    'prefix': 'funcEvent'
+    'body': """
+        '${1:name}': function(e,tmpl$2) {
+            ${3:e.preventDefault();}$4
+        },
+        """
+  # Template Helpers
+  'Template Helpers':
+    'prefix': 'TempHelpers'
+    'body': """
+      Template.$1.helpers({
+          $2
+      });
+    """
+  'Template onRendered':
+    'prefix': 'TempOnRendered'
+    'body': """
+        Template.$1.onRendered(function(){
+            $2
+        });
+    """
+  # Template registerHelper
+  'Template registerHelper':
+    'prefix': 'TempRegisterHelper'
+    'body': """
+        Template.registerHelper('${1:name}', function($2){
+            $3
+        });
+    """
+  # var event
+  'var event':
+    'prefix': 'varEvent'
+    'body': """
+        var ${1:name} = e.target.${1:name}.value;$2
+    """
+  # var object event
+  'var object event':
+    'prefix': 'jqueryEvent'
+    'body': """
+        var ${1:name} = $(e.target).find('[${2:name}=${1:name}]').val();$3
+    """
+  # object event
+  'object event':
+    'prefix': 'objectEvent'
+    'body': """
+        ${1:name}: $(e.target).find('[name=${1:name}]').val(),$3
+    """
+  # --------------------------------------------
+  # Collections
+  # --------------------------------------------
+  # new Collection
+  'New Collection':
+    'prefix': 'newCollection'
+    'body': """
+      ${1:collectionName} = new Mongo.Collection('${2:collectionName}');$3
+    """
+  'Attach Schema':
+    'prefix': 'newSchema'
+    'body': """
+        ${1:name}.attachSchema(new SimpleSchema({
+            $2
+        }));
+    """
+  # --------------------------------------------
+  # Object & Variable Decleration
+  # --------------------------------------------
+  # new Object stored to variable
+  'New Var Object':
+    'prefix': 'newObj'
+    'body': """
+      var ${1:objectName} = {$2}$3
+    """
+  # new Field
+  'New Field':
+    'prefix': 'newField'
+    'body': """
+      ${1:fieldName}: ${2:$1},$3
+    """
+  # -------------------------------------
+  # Iron Router
+  # -------------------------------------
+  # Router configure
+  'Router configure':
+    'prefix': 'rc'
+    'body': """
+        Router.configure({
+            layoutTemplate: '${1:layout}',
+            loadingTemplate: '${2:loading}',
+            notFoundTemplate: '${3:notFound}'$4
+        });$5
+    """
+  # Router map
+  'Router map':
+    'prefix': 'rm'
+    'body': """
+        Router.map(function() {
+            $1
+        });
+    """
+  # Router this
+  'this Router':
+    'prefix': 'rt'
+    'body': """
+        this.route('${1:routeName}', {
+            path: '${2:path}',
+            template: '${3:templateName}'$4
+        });$5
+    """
+  'router onBeforeAction':
+    'prefix': 'roba'
+    'body': """
+        Router.onBeforeAction(${1:object}, {
+            only: ['${2:route}'$3]
+        });$4
+    """
+  # Router.route
+  'Router route':
+    'prefix': 'rr'
+    'body': """
+        Router.route('${1:name}');$2
+    """
+  'Router route object':
+    'prefix': 'routerRouteObject'
+    'body': """
+        Router.route('${1:urlname}', {
+            name: '${2:routername}',
+            template: '${3:templateName}',$4
+        });
+    """
+  # Router.route with data
+  'Router route w/ data':
+    'prefix': 'routerRouteData'
+    'body': """
+        Router.route('${1:urlname}', {
+              name: '${2:routername}',
+              template: '${3:templateName}',
+              data: function(){
+                 $4
+              }
+        });
+    """
+  # Router go
+  'Router go':
+    'prefix': 'rg'
+    'body': """
+        Router.go('${1:name}');$2
+    """
+  # -------------------------------------
+  # Comments
+  # -------------------------------------
+  'comments':
+    'prefix': '/*'
+    'body': """
+        /* ----------------------------------------------------------
+         * $1
+         * -------------------------------------------------------- */$2
+    """
+# ==============================================================================
+# -------- HTML BootStrap 3 --------
+# ==============================================================================
+'.text.html.basic':
+  # template name=""
+  'Template':
+    'prefix': 'temp'
+    'body': """
+      <template name="$1">
+          $2
+      </template>
+      $3
+    """
+  # div container & row
+  'Container w/ Row':
+    'prefix': 'divconrow'
+    'body': """
+      <div class="container">
+          <div class="row">
+              $1
+          </div>
+      </div>
+    """
+  # div panel
+  'panel':
+    'prefix': 'divpanel'
+    'body': """
+      <div class="panel panel-${1:default}">
+           <div class="panel-heading">${2:Heading}</div>
+           <div class="panel-body">
+                ${3:Body}
+           </div>
+      </div>
+    """
+  'List group':
+    'prefix': 'divlistgroup'
+    'body': """
+        <div class="list-group">
+            <a href="${1:#}" class="list-group-item">${2:name}</a>$3
+        </div>
+    """
+  'ul list-group':
+    'prefix': 'divul'
+    'body': """
+        <ul class="list-group">
+            <li class="list-group-item">$1</li>$2
+        </ul>
+    """
+  # -------------------------------------
+  # Standard Form
+  # -------------------------------------
+  # Form Standard
+  'Form Standard':
+    'prefix': 'divform'
+    'body': """
+      <form class="$1"$2>
+          $3
+      </form>
+    """
+  # input
+  'input':
+    'prefix': 'divinput'
+    'body': """
+        <div class="form-group">
+            <label>${1:label}</label>
+            <input type="${2:text}" name="${3:name}" id="${3:name}" class="form-control"$4>
+        </div>$5
+    """
+  # select dropdown
+  'select dropdown':
+    'prefix': 'divSelectDropdown'
+    'body': """
+        <div class="form-group">
+            <label>${1:label}</label>
+            <select class="form-control" name="${2:name}" id="${2:name}">
+                <option value="0">--Select Category--</option>
+                <option value="$3">${4:name}</option>$5
+            </select>
+        </div>$6
+    """
+  # textarea
+  'textarea':
+    'prefix': 'divtextarea'
+    'body': """
+        <div class="form-group">
+            <label>${1:label}</label>
+            <textarea name="${2:name}" id="${2:name}" class="form-control" rows="8" cols="40"></textarea>
+        </div>$3
+    """
+  # submit Button
+  'submit Button':
+    'prefix': 'divsubmit'
+    'body': """
+        <div class="form-group">
+            <input type="${1:submit}" name="${2:name}" id="${2:name}" class="btn btn-${3:default}" value="${4:Button Name}">
+        </div>$5
+    """
+  # radio button
+  'radio':
+    'prefix': 'divradio'
+    'body': """
+        <div class="form-group">
+            <label>${1:labelName}</label>
+            <input type="radio" name="${2:name}" value="1">${3:Yes}
+            <input type="radio" name="${2:name}" value="0">No
+        </div>
+    """
+  # -------------------------------------
+  # Horizontal Form
+  # -------------------------------------
+  # div form horizontal
+  'Form Horizontal':
+    'prefix': 'divformh'
+    'body': """
+      <form class="form-horizontal">
+
+           $4
+
+           ${1:<div class="form-group">
+               <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-${2:default}">${3:Sign in}</button>
+               </div>
+           </div>}
+      </form>
+    """
+  # input group
+  'input form-group':
+    'prefix': 'divinph'
+    'body': """
+        <div class="form-group">
+            <label class="col-sm-2 control-label">${1:labelName}</label>
+            <div class="col-sm-10">
+                <input type="${2:text}" class="form-control" name="${3:name}" id="${3:name}">
+            </div>
+        </div>$4
+    """
+  # button group
+  'submit form-group':
+    'prefix': 'divsubmith'
+    'body': """
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                 <button type="${1:submit}" class="btn btn-${2:default}">${3:Button Name}</button>
+             </div>
+         </div>$4
+    """
+  # -------------------------------------
+  # Navbar
+  # -------------------------------------
+  'Navigation Top Bar':
+    'prefix': 'divnavbar'
+    'body': """
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- TITLE DIV -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Menu1</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                     <!-- LEFT MENU's -->
+                     <ul class="nav navbar-nav">
+                       <li class="active"><a href="#">Menu2</a></li>
+                       <li><a href="#">Menu3</a></li>
+                     </ul>
+                     <!-- RIGHT MENU's -->
+                     <ul class="nav navbar-nav navbar-right">
+                          <li><a href="#">Menu4</a></li>
+                          <!-- Dropdown Menus -->
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown Menu<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="#">Menu5</a></li>
+                                    <li><a href="#">Menu6</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" class="#">Menu7</a></li>
+                              </ul>
+                          </li>
+                     </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+    """
+  # -------------------------------------
+  # Modal
+  # -------------------------------------
+  # modal button
+  'modal button':
+    'prefix': 'divmodalbutton'
+    'body': """
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-${1:primary} btn-lg" data-toggle="modal" data-target="#${2:myModal}">
+            ${3:buttonName}
+        </button>
+
+    """
+  # modal
+  'modal':
+    'prefix': 'divmodal'
+    'body': """
+
+        <!-- Modal -->
+        <div class="modal fade" id="${1:myModal}" tabindex="-1" role="dialog" aria-labelledby="${1:myModal}Label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="${1:myModal}Label">${2:Title}</h4>
+                    </div>
+                    <div class="modal-body">
+                        ${3:body...}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    """
+  # -------------------------------------
+  # Table
+  # -------------------------------------
+  # table
+  'table':
+    'prefix': 'divtable'
+    'body': """
+          <table class="table table-hover">
+                <thead>
+                    $1
+                </thead>
+                <tbody>
+                    $2
+                </tbody>
+          </table>
+    """
+  # -------------------------------------
+  # Basic HTML Formats
+  # -------------------------------------
+  # p tags
+  'p':
+    'prefix': 'p'
+    'body': """
+        <p>$1</p>$2
+    """
+  # th tags
+  'th':
+    'prefix': 'th'
+    'body': """
+        <th>$1</th>$2
+    """
+  'td tags':
+    'prefix': 'td'
+    'body': """
+        <td>$1</td>$2
+    """
+  # -------------------------------------
+  # Meteor Html Functions (loops, if etc.)
+  # -------------------------------------
+  # each
+  '#each':
+    'prefix': 'each'
+    'body': """
+        {{#each ${1:name}}}
+            $2
+        {{/each}}
+    """
+  '#eachelse':
+    'prefix': 'eachelse'
+    'body': """
+        {{#each ${1:name}}}
+            $2
+        {{else}}
+            $3
+        {{/each}}
+    """
+  '#if':
+    'prefix': 'if'
+    'body': """
+      {{#if ${1:name}}}
+          $2
+      {{/if}}
+    """
+  '#ifelse':
+    'prefix': 'ifelse'
+    'body': """
+      {{#if ${1:name}}}
+          $2
+      {{else}}
+          $3
+      {{/if}}
+    """

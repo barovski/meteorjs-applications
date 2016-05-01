@@ -1,0 +1,17 @@
+# keymap.cson
+'atom-text-editor.vim-mode.insert-mode':
+  'j': 'exit-insert-mode-if-proceeded-by-j'
+
+'atom-text-editor.vim-mode:not(.insert-mode)':
+  'ctrl-v': 'core:paste'
+  'ctrl-c': 'core:copy'
+  'ctrl-alt-n': 'advanced-open-file:toggle'
+  'ctrl-alt-o': 'git-control:toggle'
+  'alt-d': 'find-and-replace:select-all'
+
+'atom-text-editor.vim-mode':
+  'ctrl-0': 'tree-view:toggle-focus'
+  'alt-w': 'core:close'
+  'ctrl-alt-n': 'advanced-open-file:toggle'
+  'ctrl-alt-o': 'git-control:toggle'
+  'alt-d': 'find-and-replace:select-all'
