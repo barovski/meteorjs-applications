@@ -52,6 +52,13 @@
     'body': """
         Meteor.methods({$1});
     """
+  'Meteor Timeout':
+    'prefix': 'meteorTimeout'
+    'body': """
+        Meteor.setTimeout(function() {
+            $2
+        }, $1);
+    """
   # -------------------------------------
   # Template Helpers & Events
   # -------------------------------------
@@ -67,7 +74,7 @@
   'function (event, template)':
     'prefix': 'funcEvent'
     'body': """
-        '${1:name}': function(e,tmpl$2) {
+        '${1:name}': function(e, template$2) {
             ${3:e.preventDefault();}$4
         },
         """
@@ -92,6 +99,13 @@
     'body': """
         Template.registerHelper('${1:name}', function($2){
             $3
+        });
+    """
+  'Template OnCreated':
+    'prefix': 'TempOnCreated'
+    'body': """
+        Template.$1.onCreated(function(){
+            $2
         });
     """
   # var event
@@ -148,7 +162,7 @@
   # -------------------------------------
   # Router configure
   'Router configure':
-    'prefix': 'routerConfigure'
+    'prefix': 'routercConfigure'
     'body': """
         Router.configure({
             layoutTemplate: '${1:layout}',
@@ -189,7 +203,7 @@
     """
   # Router.route
   'Router route':
-    'prefix': 'routerRoute'
+    'prefix': 'rr'
     'body': """
         Router.route('${1:name}');$2
     """
@@ -376,7 +390,7 @@
          </div>$4
     """
   # -------------------------------------
-  # Navbar 
+  # Navbar
   # -------------------------------------
   'Navigation Top Bar':
     'prefix': 'divnavbar'
