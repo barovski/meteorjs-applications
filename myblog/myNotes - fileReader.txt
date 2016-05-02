@@ -1,0 +1,9 @@
+var fileInput = document.querySelector('input[type=file]');
+
+fileInput.files
+
+var reader = new FileReader;
+
+reader.readAsText(fineInput.files[0]);
+
+reader.result
