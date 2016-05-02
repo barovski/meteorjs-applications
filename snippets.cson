@@ -148,7 +148,7 @@
   # -------------------------------------
   # Router configure
   'Router configure':
-    'prefix': 'rc'
+    'prefix': 'routerConfigure'
     'body': """
         Router.configure({
             layoutTemplate: '${1:layout}',
@@ -156,9 +156,16 @@
             notFoundTemplate: '${3:notFound}'$4
         });$5
     """
+  'Router Controller Extend':
+    'prefix': 'routeControllerExtend'
+    'body': """
+        ${1:ControllerName} = RouteController.extend({
+            $2
+        });
+    """
   # Router map
   'Router map':
-    'prefix': 'rm'
+    'prefix': 'routerMap'
     'body': """
         Router.map(function() {
             $1
@@ -166,7 +173,7 @@
     """
   # Router this
   'this Router':
-    'prefix': 'rt'
+    'prefix': 'routerThis'
     'body': """
         this.route('${1:routeName}', {
             path: '${2:path}',
@@ -174,7 +181,7 @@
         });$5
     """
   'router onBeforeAction':
-    'prefix': 'roba'
+    'prefix': 'routerOnBeforeAction'
     'body': """
         Router.onBeforeAction(${1:object}, {
             only: ['${2:route}'$3]
@@ -182,7 +189,7 @@
     """
   # Router.route
   'Router route':
-    'prefix': 'rr'
+    'prefix': 'routerRoute'
     'body': """
         Router.route('${1:name}');$2
     """
@@ -369,7 +376,7 @@
          </div>$4
     """
   # -------------------------------------
-  # Navbar
+  # Navbar 
   # -------------------------------------
   'Navigation Top Bar':
     'prefix': 'divnavbar'
