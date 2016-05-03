@@ -1,7 +1,7 @@
 Router.configure({
     layoutTemplate: 'layout',
     // loadingTemplate: 'loading',
-    // notFoundTemplate: 'notFound'
+    notFoundTemplate: 'notFound'
 });
 
 Router.route('/', {
@@ -42,7 +42,7 @@ PostListController = RouteController.extend({
         var nextPath = this.route.path({postsLimit: this.postsLimit() + this.increment});
         // console.log('h ' + hasMore);
         // console.log('n ' + nextPath);
-        console.log(this.route.path());
+        // console.log(this.route.path());
         return {
             postList: this.posts(),
             nextPath: hasMore ? nextPath : null,

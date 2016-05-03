@@ -1,17 +1,18 @@
 <template name="posts">
-    <div class="container" style="padding-top: 100px;">
-        <div class="row">
-            <div class="panel panel-default">
-                 <div class="panel-heading">Posts</div>
-                 <div class="panel-body">
-                    <ul class="list-group">
-                        {{#each postList}}
-                            <li class="list-group-item">{{title}}</li>
-                        {{/each}}
-                        <li class="list-group-item"><a class="load-more" href="{{nextPath}}">Load more</a></li>
-                    </ul>
-                 </div>
+    <div class="container marketing">
+        <hr class="featurette-divider">
+        {{#each listsPost}}
+            <div class="row featurette">
+                <div class="col-md-5">
+                    <img src="{{getAbs}}upload/{{getFile imageId}}" class="featurette-image img-responsive center-block" dheight="400px" width="400px" ata-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                </div>
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">{{title}}&nbsp;<span class="text-muted">It'll blow your mind.</span></h2>
+                    <p class="lead">{{body}}</p>
+                </div>
             </div>
-        </div>
+
+            <hr class="featurette-divider">
+        {{/each}}
     </div>
 </template>
