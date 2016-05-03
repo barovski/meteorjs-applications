@@ -31,7 +31,7 @@ PostListController = RouteController.extend({
     findOptions: function() {
         return { limit: this.postsLimit() };
     },
-    waitOn: function() {
+    subscriptions: function() {
         return Meteor.subscribe('getPostsWithImages', this.postsLimit());
     },
     posts: function() {
@@ -40,7 +40,7 @@ PostListController = RouteController.extend({
     data: function() {
         var hasMore = this.posts().count() === this.postsLimit();
         var nextPath = this.route.path({postLimit: this.postsLimit() + this.increment});
-        
+
         return {
             postList: this.posts(),
             nextPath: hasMore ? nextPath : null,
