@@ -23,7 +23,7 @@ Template.upload.events({
             });
         }
 
-        Router.go('/posts');
+        Router.go('/postsList');
     },
 });
 

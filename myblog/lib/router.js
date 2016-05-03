@@ -24,7 +24,7 @@ Router.route('/search', {
  * -------------------------------------------------------- */
 PostListController = RouteController.extend({
     template: 'posts',
-    increment: 5,
+    increment: 1,
     postsLimit: function() {
         return parseInt(this.params.postLimit) || this.increment;
     },
@@ -32,17 +32,15 @@ PostListController = RouteController.extend({
         return { limit: this.postsLimit() };
     },
     waitOn: function() {
-        return Meteor.subscribe('Posts.Paginate', this.findOptions());
+        return Meteor.subscribe('getPostsWithImages', this.postsLimit());
     },
     posts: function() {
         return Posts.find( {}, this.findOptions() );
     },
     data: function() {
         var hasMore = this.posts().count() === this.postsLimit();
-        var nextPath = this.route.path({postsLimit: this.postsLimit() + this.increment});
-        // console.log('h ' + hasMore);
-        // console.log('n ' + nextPath);
-        // console.log(this.route.path());
+        var nextPath = this.route.path({postLimit: this.postsLimit() + this.increment});
+        
         return {
             postList: this.posts(),
             nextPath: hasMore ? nextPath : null,
@@ -60,6 +58,6 @@ Router.route('/postsList', {
     name: 'postsList',
     template: 'postsList',
     waitOn: function(){
-        return Meteor.subscribe('getPostsWithImages');
+        return Meteor.subscribe('getPostsWithImages', 1);
     }
 });
