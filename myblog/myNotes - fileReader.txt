@@ -4,6 +4,6 @@ fileInput.files
 
 var reader = new FileReader;
 
-reader.readAsText(fineInput.files[0]);
+reader.readAsText(fileInput.files[0]);
 
 reader.result

@@ -1,0 +1,17 @@
+<template name="postsList">
+    <div class="container" style="padding-top: 100px;">
+        <div class="row">
+            <div class="panel panel-default">
+                 <div class="panel-heading">List of All Posts</div>
+                 <div class="panel-body">
+                    <ul class="list-group">
+                        {{#each postsList}}
+                            <li class="list-group-item">{{dataType data}}</li>
+                        {{/each}}
+                        <li class="list-group-item"><a class="load-more" href="{{nextPath}}">Load more</a></li>
+                    </ul>
+                 </div>
+            </div>
+        </div>
+    </div>
+</template>
