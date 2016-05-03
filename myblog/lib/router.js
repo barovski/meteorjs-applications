@@ -59,4 +59,7 @@ Router.route('/posts/:postLimit?', {
 Router.route('/postsList', {
     name: 'postsList',
     template: 'postsList',
+    waitOn: function(){
+        return Meteor.subscribe('getPostsWithImages');
+    }
 });

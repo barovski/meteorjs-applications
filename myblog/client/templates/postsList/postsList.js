@@ -1,9 +1,11 @@
 Template.postsList.helpers({
-    postsList: function() {
-        return Posts.find();
+    listsPost: function() {
+        return Posts.find({}, {sort: {createdAt: -1}});
     },
-    dataType: function(data) {
-        console.dir(data);
-        return EJSON.parse(data);
+    getAbs: function() {
+        return Meteor.absoluteUrl();
+    },
+    getFile: function(imageId) {
+        return Images.findOne({_id: imageId}).name;
     },
 });
