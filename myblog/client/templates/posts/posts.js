@@ -6,6 +6,7 @@ Template.posts.helpers({
         return Meteor.absoluteUrl();
     },
     getFile: function(imageId) {
-        return Images.findOne({_id: imageId}).name;
+        var image = Images.findOne({_id: imageId});
+        return image && image._id;
     },
 });

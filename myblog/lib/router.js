@@ -19,12 +19,26 @@ Router.route('/search', {
     template: 'search',
 });
 
+Router.route('/login', {
+    name: 'login',
+    template: 'login',
+});
+
+Router.route('/register', {
+    name: 'register',
+    template: 'register',
+});
+
+Router.route('/uploadSuccess', {
+    name: 'uploadSuccess',
+    template: 'uploadSuccess'
+})
 /* ----------------------------------------------------------
  * PostListController for Pagination
  * -------------------------------------------------------- */
 PostListController = RouteController.extend({
     template: 'posts',
-    increment: 1,
+    increment: 3,
     postsLimit: function() {
         return parseInt(this.params.postLimit) || this.increment;
     },

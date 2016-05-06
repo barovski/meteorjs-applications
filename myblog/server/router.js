@@ -1,18 +1,20 @@
-import fs from 'fs';
-import path from 'path';
+import { FileUpload } from 'meteor/deejay:file-upload';
 
-
+/* ----------------------------------------------------------
+ * serve images from the server
+ *  note: currently has a bug. when the user uploads the image
+ *        since it takes time to autoOrient an image the image
+          is not rendered on the post page
+ * -------------------------------------------------------- */
 Router.route("/upload/:imageName", function(){
 
     var fileName = this.params.imageName,
         query = this.request.query;
 
-    var base = path.resolve('.');
-    var imagePath = path.join(base, '../../../../../.uploadFiles/' + fileName);
-
-    var file = fs.readFileSync(imagePath);
+    var file = FileUpload.getImage(fileName);
 
     this.response.statusCode = 200;
-    this.response.end( file );
+    this.response.end(file);
 
 }, {where: "server"});
+ 

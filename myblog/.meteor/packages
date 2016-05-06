@@ -25,5 +25,6 @@ accounts-password
 raix:push
 ejson
 msavin:mongol
-crosswalk
 reywood:publish-composite
+deejay:file-upload
+crosswalk

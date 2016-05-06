@@ -1,18 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import { FileUpload } from 'meteor/deejay:file-upload';
 
 Meteor.methods({
     uploadFile: function(title, body, file) {
-        var buffer = new Buffer(file.data);
-        var base = path.resolve('.');
-        var filepath = path.join(base, '../../../../../.uploadFiles/' + file.name);
-
-        fs.writeFileSync(filepath, buffer, 'utf8', (err) => {
-            if(err){
-                console.log(err);
-            }
-        });
-
+        // add image
         var imageId = Images.insert({
             name: file.name,
             type: file.type,
@@ -20,6 +10,12 @@ Meteor.methods({
             createdAt: new Date()
         });
 
+        // save filesytem
+        FileUpload.save(file, imageId, function(message){
+            console.log(message);
+        });
+
+        // add post
         Posts.insert({
             imageId: imageId,
             title: title,
@@ -27,4 +23,11 @@ Meteor.methods({
             createdAt: new Date()
         });
     },
+    userRegister: function(username, password){
+            
+        Accounts.createUser({
+            username: username,
+            password: password
+        });
+    }
 });

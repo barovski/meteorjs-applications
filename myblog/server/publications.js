@@ -1,8 +1,9 @@
-
+// publish for pagination
 Meteor.publish('Posts.Paginate', function(options) {
     return Posts.find({}, options);
 });
 
+// reactive joins
 Meteor.publishComposite('getPostsWithImages', function(limit) {
     return {
         find: function() {

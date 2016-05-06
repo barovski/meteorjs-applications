@@ -1,6 +1,10 @@
 /* ----------------------------------------------------------
  * Uploading File Event
  * -------------------------------------------------------- */
+
+import { FileUpload } from 'meteor/deejay:file-upload';
+
+
 Template.upload.events({
     'submit form': function(e, template) {
         e.preventDefault();
@@ -14,7 +18,7 @@ Template.upload.events({
 
         for(var i = 0; i < fileList.length; i++){
 
-            BinaryFileReader.read(fileList[i], function(err, meteorFile){
+            FileUpload.read(fileList[i], function(err, meteorFile){
                 if(err){
                     console.log(err);
                 }else{
@@ -22,38 +26,6 @@ Template.upload.events({
                 }
             });
         }
-
-        Router.go('/postsList');
+        Router.go('/uploadSuccess');
     },
 });
-
-/* ----------------------------------------------------------
- * Should be made as a Package Later
- * -------------------------------------------------------- */
-if(Meteor.isClient){
-    // custom binary file reader
-    var BinaryFileReader = {
-        read: function (file, callback){
-            var reader = new FileReader;
-
-            var fileInfo = {
-                name: file.name,
-                type: file.type,
-                size: file.size,
-                data: null
-            };
-
-            reader.onload = function(){
-                fileInfo.data = new Uint8Array(reader.result);
-                // fileInfo.data = reader.result;
-                callback(null, fileInfo);
-            };
-
-            reader.onerror = function () {
-                callback(reader.error);
-            };
-
-            reader.readAsArrayBuffer(file);
-        }
-    }
-}

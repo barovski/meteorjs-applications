@@ -1,0 +1,13 @@
+img{
+    image-orientation: 0deg;
+image-orientation: 6.4deg;     /* Rounded to 0deg */
+image-orientation: -90deg;     /* Equivalent to 270deg, its normalized computed value */
+image-orientation: from-image; /* Use EXIF data from the image */
+image-orientation: 90deg flip; /* Rotate 90deg, and flip it horizontally */
+image-orientation: flip;       /* No rotation, only applies a horizontal flip */
+    /*-webkit-transform: rotate(90deg);
+   -moz-transform: rotate(90deg);
+   -o-transform: rotate(90deg);
+   -ms-transform: rotate(90deg);
+   transform: rotate(90deg);*/
+}
